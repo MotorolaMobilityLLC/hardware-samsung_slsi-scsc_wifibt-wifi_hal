@@ -205,13 +205,17 @@ wifi_error wifi_configure_roaming(wifi_interface_handle iface, wifi_roaming_conf
     if (!roaming_config) {
         ALOGE("%s: Invalid Buffer provided. Exit", __FUNCTION__);
         return WIFI_ERROR_INVALID_ARGS;
-   }
+    }
 
     /* Generate request id randomly*/
-   requestId = get_requestid();
-   bssid_params.num_bssid = roaming_config->num_blacklist_bssid;
+    requestId = get_requestid();
+    bssid_params.num_bssid = roaming_config->num_blacklist_bssid;
 
-   memcpy(bssid_params.bssids, roaming_config->blacklist_bssid,
+    if (bssid_params.num_bssid == 0) {
+        return WIFI_SUCCESS;
+    }
+
+    memcpy(bssid_params.bssids, roaming_config->blacklist_bssid,
            (bssid_params.num_bssid * sizeof(mac_addr)));
 
     ret = wifi_set_bssid_blacklist(requestId, iface, bssid_params);
