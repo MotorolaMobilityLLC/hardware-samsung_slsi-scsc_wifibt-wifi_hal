@@ -9,10 +9,18 @@
 
 // Make the HAL library
 // ============================================================
+
+slsi_wifi_hal_defaults {
+   name: "slsiwifihal-defaults-instance",
+   cppflags: [
+       "-Wno-unused-parameter",
+   ],
+}
+
 cc_library_static {
     name: "libwifi-hal-slsi",
 
-    cflags: ["-Wno-unused-parameter"],
+    defaults: ["slsiwifihal-defaults-instance"],
 
     include_dirs: [
         "system/core/include/",

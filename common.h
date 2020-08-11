@@ -19,6 +19,12 @@
 #define DEFAULT_CMD_SIZE        (64)
 #define DOT11_OUI_LEN             3
 
+#ifdef SLSI_WIFI_HAL_NL_ATTR_CONFIG
+#define WIFI_HAL_ATTR_START 1
+#else
+#define WIFI_HAL_ATTR_START 0
+#endif
+
 typedef struct {
 	int num_bssid;
 	mac_addr bssids[MAX_BLACKLIST_BSSID];

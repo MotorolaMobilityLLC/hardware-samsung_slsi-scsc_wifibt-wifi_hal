@@ -39,8 +39,10 @@
 #define FEATURE_SET                  0
 #define FEATURE_SET_MATRIX           1
 #define ATTR_NODFS_VALUE             3
+#ifndef SLSI_WIFI_HAL_NL_ATTR_CONFIG
 #define ATTR_COUNTRY_CODE            4
 #define ATTR_LOW_LATENCY_MODE        5
+#endif
 
 static int internal_no_seq_check(nl_msg *msg, void *arg);
 static int internal_valid_message_handler(nl_msg *msg, void *arg);
@@ -71,6 +73,18 @@ enum apf_request_type {
     SET_APF_PROGRAM,
     READ_APF_PROGRAM
 };
+
+#ifdef SLSI_WIFI_HAL_NL_ATTR_CONFIG
+enum wifi_low_latency_attr {
+    ATTR_LOW_LATENCY_MODE = 1,
+    ATTR_LOW_LATENCY_MAX
+};
+
+enum country_code_attr {
+    ATTR_COUNTRY_CODE = 1,
+    ATTR_COUNTRY_CODE_MAX
+};
+#endif
 
 static wifi_error wifi_start_rssi_monitoring(wifi_request_id id, wifi_interface_handle
                         iface, s8 max_rssi, s8 min_rssi, wifi_rssi_event_handler eh);

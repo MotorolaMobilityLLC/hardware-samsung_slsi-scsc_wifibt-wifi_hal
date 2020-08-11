@@ -32,7 +32,8 @@
 enum roam_attributes {
     SLSI_ATTR_ROAM_CAPABILITY_BLACKLIST_SIZE,
     SLSI_ATTR_ROAM_CAPABILITY_WHITELIST_SIZE,
-    SLSI_ATTR_ROAM_STATE
+    SLSI_ATTR_ROAM_STATE,
+    SLSI_ATTR_ROAM_MAX
 };
 
 class BssidBlacklistCommand : public WifiCommand
