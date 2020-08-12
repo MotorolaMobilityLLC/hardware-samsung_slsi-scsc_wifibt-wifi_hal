@@ -51,21 +51,24 @@ static int wifi_add_membership(wifi_handle handle, const char *group);
 static wifi_error wifi_init_interfaces(wifi_handle handle);
 
 typedef enum wifi_attr {
-    ANDR_WIFI_ATTRIBUTE_ND_OFFLOAD_CONFIG,
-    ANDR_WIFI_ATTRIBUTE_PNO_RANDOM_MAC_OUI
+    ANDR_WIFI_ATTRIBUTE_ND_OFFLOAD_CONFIG = WIFI_HAL_ATTR_START,
+    ANDR_WIFI_ATTRIBUTE_PNO_RANDOM_MAC_OUI,
+    ANDR_WIFI_ATTRIBUTE_GSCAN_OUI_MAX
 } wifi_attr_t;
 
 enum wifi_rssi_monitor_attr {
-    RSSI_MONITOR_ATTRIBUTE_MAX_RSSI,
+    RSSI_MONITOR_ATTRIBUTE_MAX_RSSI = WIFI_HAL_ATTR_START,
     RSSI_MONITOR_ATTRIBUTE_MIN_RSSI,
     RSSI_MONITOR_ATTRIBUTE_START,
+    RSSI_MONITOR_ATTRIBUTE_MAX
 };
 
 enum wifi_apf_attr {
     APF_ATTRIBUTE_VERSION,
     APF_ATTRIBUTE_MAX_LEN,
     APF_ATTRIBUTE_PROGRAM,
-    APF_ATTRIBUTE_PROGRAM_LEN
+    APF_ATTRIBUTE_PROGRAM_LEN,
+    APF_ATTRIBUTE_MAX
 };
 
 enum apf_request_type {
