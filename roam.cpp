@@ -57,10 +57,12 @@ public:
             return result;
         }
 
-        for (int i = 0; i < mParams->num_bssid; i++) {
-            result = request.put_addr(GSCAN_ATTRIBUTE_BLACKLIST_BSSID, mParams->bssids[i]);
-            if (result < 0) {
-                return result;
+        if (mParams->num_bssid > 0) {
+            for (int i = 0; i < mParams->num_bssid; i++) {
+                result = request.put_addr(GSCAN_ATTRIBUTE_BLACKLIST_BSSID, mParams->bssids[i]);
+                if (result < 0) {
+                    return result;
+                }
             }
         }
         request.attr_end(data);
@@ -212,9 +214,6 @@ wifi_error wifi_configure_roaming(wifi_interface_handle iface, wifi_roaming_conf
     requestId = get_requestid();
     bssid_params.num_bssid = roaming_config->num_blacklist_bssid;
 
-    if (bssid_params.num_bssid == 0) {
-        return WIFI_SUCCESS;
-    }
 
     memcpy(bssid_params.bssids, roaming_config->blacklist_bssid,
            (bssid_params.num_bssid * sizeof(mac_addr)));
